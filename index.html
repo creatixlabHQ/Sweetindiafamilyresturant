@@ -1,190 +1,25 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweet India Family Restaurant</title>
-  <meta name="description" content="Sweet India - Best restaurant in Basti" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff5f0;
-      color: #333;
-    }
-    header {
-      background: #ff6a00;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      font-size: 1.8rem;
-    }
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #ff6a00, #ee0979);
-      color: white;
-    }
-    .hero img {
-      max-width: 300px;
-      margin-top: 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      animation: fadeInUp 1.5s ease-in-out;
-      transition: transform 0.3s ease;
-    }
-    .hero img:hover {
-      transform: scale(1.05) rotate(1deg);
-    }
-    .btn {
-      margin-top: 20px;
-      padding: 15px 30px;
-      background: white;
-      color: #ff6a00;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-    .btn:hover {
-      background: #ff6a00;
-      color: white;
-      transform: scale(1.1);
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #ff6a00;
-    }
-    .menu-category {
-      margin-bottom: 30px;
-    }
-    .menu-category h3 {
-      margin-bottom: 10px;
-      color: #ee0979;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    li {
-      padding: 5px 0;
-    }
-    .contact, .map {
-      text-align: center;
-    }
-    iframe {
-      width: 100%;
-      max-width: 600px;
-      height: 300px;
-      border: none;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-    footer {
-      background: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    footer a {
-      color: #ff6a00;
-      text-decoration: none;
-    }
-    @keyframes fadeInUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-  </style>
-  <script>
-    function scrollToMenu() {
-      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Sweet India</h1>
-    <nav>
-      <a href="#menu">Menu</a>
-      <a href="#contact">Contact</a>
-      <a href="#location">Location</a>
-    </nav>
-  </header>  <section class="hero">
-    <h2>Welcome to Sweet India Family Restaurant</h2>
-    <p>Your favorite food 😋, delivered fresh!</p>
-    <button class="btn" onclick="scrollToMenu()">Order Now</button>
-    <br />
-    <img src="best-8.png" alt="Restaurant Image">
-  </section>  <section id="menu">
-    <h2>📜 Menu List</h2>
-    <div class="menu-category">
-      <h3>Dosa</h3>
-      <ul>
-        <li>Plain Dosa - ₹149</li>
-        <li>Masala Dosa - ₹159</li>
-        <li>Special Dosa - ₹179</li>
-        <li>Paneer Dosa - ₹199</li>
-      </ul>
+    <div class="login-container">
+        <form id="loginForm">
+            <h2>Login</h2>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+            <p id="message"></p>
+        </form>
     </div>
-    <div class="menu-category">
-      <h3>Pizza 🍕</h3>
-      <ul>
-        <li>Paneer Pizza - ₹275</li>
-        <li>Cheese Pizza - ₹300</li>
-      </ul>
-    </div>
-    <div class="menu-category">
-      <h3>Shakes 🥤</h3>
-      <ul>
-        <li>Oreo Shake - ₹130</li>
-        <li>Red Velvet Shake - ₹160</li>
-      </ul>
-    </div>
-    <!-- Tum poora menu yahaan daal sakte ho -->
-  </section>  <section id="contact" class="contact">
-    <h2>📞 Contact Us</h2>
-    <p>Phone: +91-9198951281</p>
-    <p>Email: info@sweetindia.com</p>
-  </section>  <section id="location" class="map">
-    <h2>📍 Our Location</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.0032329409223!2d82.73326447427452!3d26.7569849651076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399041abfb44a131%3A0x640a710d5e22252c!2sBasti%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1654843788722!5m2!1sen!2sin"
-      allowfullscreen=""
-      loading="lazy"
-    ></iframe>
-  </section>  <footer>
-    <p>&copy; 2025 Sweet India Restaurant | Designed by Shubham</p>
-    <p><a href="https://instagram.com/sweetindiaofficial">Follow us on Instagram</a></p>
-  </footer>
+    <script src="script.js"></script>
 </body>
 </html>
