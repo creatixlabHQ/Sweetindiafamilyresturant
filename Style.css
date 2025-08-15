@@ -1,66 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
 body {
-    font-family: 'Roboto', sans-serif;
+    background: #1b1b1b;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f0f2f5;
 }
 
-.login-container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+.box {
+    position: relative;
+    width: 350px;
+    height: 300px;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group input {
+.box::before {
+    content: "";
+    position: absolute;
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #00f0ff, #ff007c, #00f0ff);
+    background-size: 400% 400%;
+    animation: rotating 4s linear infinite;
+    filter: drop-shadow(0 15px 50px #000);
+    z-index: -1;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
+.box::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: #2d2d39;
+    border-radius: 15px;
+    border: 8px solid #25252b;
+    z-index: -1;
+}
+
+@keyframes rotating {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form h2 {
     color: #fff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.inputBox {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px 15px;
+    background: transparent;
+    border: 2px solid #888;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+.inputBox input:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 10px #00f0ff;
+}
+
+.form button {
+    padding: 10px 20px;
+    background: #ff007c;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
+    color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-#message {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-#message.success {
-    color: green;
-}
-
-#message.error {
-    color: red;
+.form button:hover {
+    background: #00f0ff;
+    box-shadow: 0 0 15px #00f0ff;
 }
