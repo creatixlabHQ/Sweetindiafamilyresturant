@@ -2,106 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Glassmorphism Login Page</title>
+  <title>Hacker Login Page</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "Courier New", monospace;
     }
 
     body {
+      overflow: hidden;
+      height: 100vh;
+      background: black;
+      color: #00ff00;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #667eea, #764ba2);
     }
 
-    .glass-box {
+    /* Matrix background canvas */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .hacker-box {
       width: 380px;
       padding: 40px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 0 25px #00ff00;
       text-align: center;
     }
 
-    .glass-box h2 {
-      color: #fff;
+    .hacker-box h2 {
       font-size: 26px;
-      margin-bottom: 25px;
-      font-weight: 600;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px #00ff00;
     }
 
     .input-box {
-      position: relative;
-      margin: 20px 0;
+      margin: 18px 0;
     }
 
     .input-box input {
       width: 100%;
-      padding: 14px 15px;
-      border: none;
+      padding: 12px 15px;
+      border: 1px solid #00ff00;
+      border-radius: 6px;
       outline: none;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
+      background: transparent;
+      color: #00ff00;
       font-size: 15px;
     }
 
     .input-box input::placeholder {
-      color: #eee;
+      color: #00ff00a0;
     }
 
     .btn {
       width: 100%;
-      padding: 14px;
+      padding: 12px;
       border: none;
-      outline: none;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
+      border-radius: 6px;
+      background: #00ff00;
+      color: black;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 10px;
     }
 
     .btn:hover {
-      opacity: 0.85;
+      background: black;
+      color: #00ff00;
+      border: 1px solid #00ff00;
     }
 
     .links {
-      margin-top: 18px;
+      margin-top: 15px;
     }
 
     .links a {
-      color: #fff;
+      color: #00ff00;
       font-size: 14px;
       text-decoration: none;
-      margin: 0 8px;
     }
 
     .links a:hover {
       text-decoration: underline;
     }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .glass-box {
-        width: 90%;
-        padding: 30px 25px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="glass-box">
-    <h2>Glass Login</h2>
+  <canvas id="matrix"></canvas>
+
+  <div class="hacker-box">
+    <h2>HACKER LOGIN</h2>
     <form id="loginForm">
       <div class="input-box">
         <input type="text" id="username" placeholder="Username" required>
@@ -109,24 +110,58 @@
       <div class="input-box">
         <input type="password" id="password" placeholder="Password" required>
       </div>
-      <button type="submit" class="btn">Login</button>
+      <button type="submit" class="btn">Access</button>
     </form>
     <div class="links">
-      <a href="#">Forgot Password?</a> | <a href="#">Sign Up</a>
+      <a href="#">Forgot Password?</a>
     </div>
   </div>
 
   <script>
-    // Simple login check
+    // ✅ Matrix rain effect
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff00";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    // ✅ Simple login check
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
       let user = document.getElementById("username").value;
       let pass = document.getElementById("password").value;
 
       if(user === "admin" && pass === "1234") {
-        alert("✅ Login Successful!");
+        alert("🟢 Access Granted");
       } else {
-        alert("❌ Invalid Username or Password");
+        alert("🔴 Access Denied");
       }
     });
   </script>
