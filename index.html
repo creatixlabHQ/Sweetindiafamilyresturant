@@ -1,169 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hacker Login Page</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Courier New", monospace;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet India Family Restaurant | Authentic Indian Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- CSS Section -->
+    <style>
+        :root {
+            --primary: #d72323;
+            --secondary: #f5a623;
+            --dark: #333333;
+            --light: #f8f8f8;
+        }
 
-    body {
-      overflow: hidden;
-      height: 100vh;
-      background: black;
-      color: #00ff00;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Matrix background canvas */
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
 
-    .hacker-box {
-      width: 380px;
-      padding: 40px;
-      border: 2px solid #00ff00;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.85);
-      box-shadow: 0 0 25px #00ff00;
-      text-align: center;
-    }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
 
-    .hacker-box h2 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px #00ff00;
-    }
+        /* Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
 
-    .input-box {
-      margin: 18px 0;
-    }
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .input-box input {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #00ff00;
-      border-radius: 6px;
-      outline: none;
-      background: transparent;
-      color: #00ff00;
-      font-size: 15px;
-    }
+        .nav-link {
+            position: relative;
+        }
 
-    .input-box input::placeholder {
-      color: #00ff00a0;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
 
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: #00ff00;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-    .btn:hover {
-      background: black;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-    }
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/72bbdef0-0e69-41e9-a768-dc49e9aba629.png') center/cover no-repeat;
+            animation: fadeIn 1.5s ease-in-out;
+        }
 
-    .links {
-      margin-top: 15px;
-    }
+        .hero-content {
+            animation: slideUp 1s ease-in-out;
+        }
 
-    .links a {
-      color: #00ff00;
-      font-size: 14px;
-      text-decoration: none;
-    }
+        /* Menu Section */
+        .menu-card {
+            transition: all 0.3s ease;
+        }
 
-    .links a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dish-badge {
+            animation: pulse 2s infinite;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            overflow: hidden;
+        }
+
+        .gallery-img {
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* About Section */
+        .about-img {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .about-content {
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark), #000);
+        }
+
+        /* Scroll Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--secondary);
+        }
+    </style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
+    <!-- Navigation -->
+    <!-- ... full body content ... -->
 
-  <div class="hacker-box">
-    <h2>HACKER LOGIN</h2>
-    <form id="loginForm">
-      <div class="input-box">
-        <input type="text" id="username" placeholder="Username" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="password" placeholder="Password" required>
-      </div>
-      <button type="submit" class="btn">Access</button>
-    </form>
-    <div class="links">
-      <a href="#">Forgot Password?</a>
-    </div>
-  </div>
+    <!-- JavaScript Section -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-  <script>
-    // ✅ Matrix rain effect
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
 
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
 
-    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-    const drops = [];
-    for (let x = 0; x < columns; x++) drops[x] = 1;
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Scroll Reveal Animation
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-      ctx.fillStyle = "#00ff00";
-      ctx.font = fontSize + "px monospace";
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
 
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        // Menu Filtering
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCards = document.querySelectorAll('.menu-card');
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                menuTabs.forEach(t => t.classList.remove('bg-yellow-500', 'text-white'));
+                tab.classList.add('bg-yellow-500', 'text-white');
+                
+                const category = tab.dataset.category;
+                
+                menuCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        if (menuTabs.length > 0) {
+            menuTabs[0].classList.add('bg-yellow-500', 'text-white');
         }
-        drops[i]++;
-      }
-    }
 
-    setInterval(draw, 33);
+        // Form Submission
+        const bookingForm = document.getElementById('booking-form');
+        
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const guests = document.getElementById('guests').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            
+            alert(`Thank you ${name}! Your table for ${guests} on ${date} at ${time} has been booked. We'll send confirmation details to ${email}.`);
+            bookingForm.reset();
+        });
 
-    // ✅ Simple login check
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-
-      if(user === "admin" && pass === "1234") {
-        alert("🟢 Access Granted");
-      } else {
-        alert("🔴 Access Denied");
-      }
-    });
-  </script>
+        // Add to Cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const menuItem = button.closest('.menu-card');
+                const itemName = menuItem.querySelector('h3').textContent;
+                const itemPrice = menuItem.querySelector('span').textContent;
+                
+                alert(`Added ${itemName} (${itemPrice}) to your cart!`);
+            });
+        });
+    </script>
 </body>
 </html>
