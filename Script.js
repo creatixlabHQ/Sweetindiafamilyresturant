@@ -233,7 +233,7 @@ color:#aaa;
 <h3>Contact</h3>
 <ul class="contact">
 <li><span>📍</span><span>Near Bata Gali, Gandhinagar</span></li>
-<li><span>📞</span><span>+91 error</span></li>
+<li><span>📞</span><span>+91 9198951281 </span></li>
 <li><span>📧</span><span>Rohitmujnani@gmail.com</span></li>
 </ul>
 </div>
